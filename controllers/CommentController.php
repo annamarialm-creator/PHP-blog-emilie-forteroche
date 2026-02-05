@@ -44,4 +44,34 @@ class CommentController
         // On redirige vers la page de l'article.
         Utils::redirect("showArticle", ['id' => $idArticle]);
     }
+
+     /**
+     * Supprime un commentaire.
+     * @return void
+     */
+    public function deleteComment() : void
+    {
+        if (!isset($_SESSION['user'])) {
+            throw new Exception("Accès non autorisé.");
+        }
+
+        $idComment = Utils::request("id", -1);
+
+        if ($idComment === -1) {
+            throw new Exception("Commentaire invalide.");
+        }
+
+        $commentManager = new CommentManager();
+        $comment = $commentManager->getCommentById($idComment);
+
+        if (!$comment) {
+            throw new Exception("Le commentaire demandé n'existe pas.");
+        }
+
+        $commentManager->deleteComment($comment);
+
+        Utils::redirect("showArticle", [
+            'id' => $comment->getIdArticle()
+        ]);
+    }
 }
