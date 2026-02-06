@@ -318,6 +318,12 @@ a.info {
     color: white;
 }
 
+/* Monitoring table: alternating row colors for readability */
+table tr:nth-child(even) {
+    background-color: var(--commentPaleColor);
+}
+
+
 .articleLine {
     display: flex; 
 }
