@@ -58,4 +58,20 @@
         </ul>
     <?php endif; ?>
 
-    <form action="index.php" method=
+    <form action="index.php" method="post" class="foldedCorner">
+    <h2>Commenter</h2>
+
+    <div class="formComment formGrid">
+        <label for="pseudo">Pseudonyme</label>
+        <input type="text" name="pseudo" id="pseudo" required>
+
+        <label for="content">Commentaire</label>
+        <textarea name="content" id="content" required></textarea>
+
+        <input type="hidden" name="action" value="addComment">
+        <input type="hidden" name="idArticle" value="<?= $article->getId() ?>">
+
+        <button class="submit">Ajouter un commentaire</button>
+    </div>
+</form>
+
